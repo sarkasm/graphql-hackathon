@@ -11,6 +11,7 @@ function inferRelations(schema) {
     id: schema.get('name'),
     entity: 'type',
     fields,
+    description: schema.get('description'),
   };
 
   const links = relations.map(type => ({

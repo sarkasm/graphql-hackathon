@@ -5,6 +5,7 @@ function renderTypeTable(type) {
   const fields = `<ul class="list-group"> ${type.fields.map(row).join('\n')} </ul>`;
   const table = `${title(type)}${fields}`;
 
+  document.querySelector('#type-description').innerHTML = type.description;
   document.querySelector('#js-type-panel').innerHTML = table;
 }
 

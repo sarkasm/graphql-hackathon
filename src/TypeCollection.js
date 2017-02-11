@@ -15,6 +15,8 @@ function getFieldName(field) {
   return field.type.ofType.name;
 }
 
+
+// Type Model
 const TypeModel = Backbone.Model.extend({
   idAttribute: 'name',
 
@@ -25,6 +27,8 @@ const TypeModel = Backbone.Model.extend({
   },
 });
 
+
+// Type Collection
 const TypeCollection = Backbone.Collection.extend({
   model: TypeModel,
 
