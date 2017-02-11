@@ -30,24 +30,35 @@ function createGraph({ nodes, links}) {
     .selectAll('line')
     .data(links)
     .enter().append('line')
+      .attr('opacity', 0.5)
       .attr('stroke-width', 5)
       .attr('fill', 'red');
 
   const node = svg.append('g')
-    .attr('class', 'nodes')
-    .selectAll('circle')
-    .data(nodes)
-    .enter().append('circle')
-      .attr('r', 5)
-      .attr('fill', 'blue')
-      .on('click', switchDataPanel)
+      .attr('class', 'nodes')
+      .selectAll('.node')
+      .data(nodes)
+    .enter()
+      .append('g')
+      .attr('class', 'node')
       .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
         .on('end', dragended))
 
+  node
+    .append('circle')
+    .attr('r', 10)
+    .attr('fill', '#009688')
+    .on('click', switchDataPanel)
+
   node.append('title')
     .text(d => d.id);
+
+  node.append("text")
+      .attr("dx", 12)
+      .attr("dy", ".35em")
+      .text(d => d.id);
 
   const ticked = () => {
     console.log('ticked');
@@ -57,9 +68,7 @@ function createGraph({ nodes, links}) {
       .attr('x2', d => d.target.x)
       .attr('y2', d => d.target.y);
 
-    node
-      .attr('cx', d => d.x)
-      .attr('cy', d => d.y);
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
   }
 
   simulation = d3.forceSimulation(nodes)
@@ -71,7 +80,8 @@ function createGraph({ nodes, links}) {
     .on('tick', ticked);
 
   simulation.force('link')
-    .links(links);
+    .links(links)
+    .distance(() => 100);
 }
 
 function switchDataPanel(d) {
