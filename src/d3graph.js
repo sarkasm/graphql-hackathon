@@ -102,7 +102,7 @@ function createGraph({ nodes, links }) {
 
   const zoom = d3.zoom()
     .scaleExtent([1, 40])
-    .translateExtent([[-100, -100], [width + 90, height + 100]])
+    .translateExtent([[-500, -500], [width + 500, height + 500]])
     .on('zoom', zoomed);
 
   svg.call(zoom);
