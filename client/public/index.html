@@ -1,6 +1,39 @@
+<!DOCTYPE html>
 <html>
-<head>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>GraphQL Slinger</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+body {
+  padding: 2em;
+}
+      .control-panel,
+      .data-panel {
+        width: 50%;
+        height: 100%;
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+
+    <section class='control-panel'>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Your GraphQL introspection query here...">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </span>
+      </div>
+    </section>
+
+    <section class='data-panel'>
+    </section>
+
+  </body>
 </html>
+
