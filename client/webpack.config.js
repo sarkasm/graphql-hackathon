@@ -29,13 +29,13 @@ module.exports = {
     })
   ],
 
-  // devServer: {
-  //   port: 3000,
-  //   host: 'localhost',
-  //   historyApiFallback: true,
-  //   watchOptions: {
-  //     aggregateTimeout: 300,
-  //     poll: 1000
-  //   }
-  // }
+  devServer: {
+    port: 3000,
+    host: 'localhost',
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
+  }
 }
