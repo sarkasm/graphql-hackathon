@@ -15,3 +15,9 @@ cd server
 npm install && npm start
 ```
 Open http://localhost:5000 in your browser and you should see GraphiQL and be able to explore our example schema and data.
+
+```
+Server examples:
+```
+* https://www.graphqlhub.com/graphql
+* http://localhost:2500/
