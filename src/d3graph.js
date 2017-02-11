@@ -1,37 +1,42 @@
 import * as d3 from 'd3';
-const renderTypeTable = require('./d3TypeTable');
+import renderTypeTable from './d3TypeTable';
 
-function createGraph({ nodes, links}) {
-  document.querySelector('svg').innerHTML = "";
+function switchDataPanel(d) {
+  renderTypeTable(d);
+}
+
+function createGraph({ nodes, links }) {
+  document.querySelector('svg').innerHTML = '';
 
   let simulation;
 
   const dragstarted = (d) => {
-    if(!d3.event.active) simulation.alphaTarget(0.3).restart();
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
     d.fx = d.x;
     d.fy = d.y;
-  }
+  };
 
   const dragged = (d) => {
     d.fx = d3.event.x;
     d.fy = d3.event.y;
-  }
+  };
 
   const dragended = (d) => {
-    if(!d3.event.active) simulation.alphaTarget(0);
+    if (!d3.event.active) simulation.alphaTarget(0);
     d.fx = null;
     d.fy = null;
-  }
+  };
 
   const svg = d3.select('svg');
   const width = +svg.attr('width');
   const height = svg.attr('height');
 
-  const link = svg.append("g")
+  const link = svg.append('g')
     .attr('class', 'links')
     .selectAll('line')
     .data(links)
-    .enter().append('line')
+    .enter()
+    .append('line')
       .attr('opacity', 0.5)
       .attr('stroke-width', 5)
       .attr('fill', 'red');
@@ -46,20 +51,20 @@ function createGraph({ nodes, links}) {
       .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
-        .on('end', dragended))
+        .on('end', dragended));
 
   node
     .append('circle')
     .attr('r', 10)
     .attr('fill', '#009688')
-    .on('click', switchDataPanel)
+    .on('click', switchDataPanel);
 
   node.append('title')
     .text(d => d.id);
 
-  node.append("text")
-      .attr("dx", 12)
-      .attr("dy", ".35em")
+  node.append('text')
+      .attr('dx', 12)
+      .attr('dy', '.35em')
       .text(d => d.id);
 
   const ticked = () => {
@@ -69,13 +74,13 @@ function createGraph({ nodes, links}) {
       .attr('x2', d => d.target.x)
       .attr('y2', d => d.target.y);
 
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  }
+    node.attr('transform', ({ x, y }) => `translate(${x},${y})`);
+  };
 
   simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink().id(d => d.id))
     .force('charge', d3.forceManyBody())
-    .force('center', d3.forceCenter(width/2, height/2));
+    .force('center', d3.forceCenter(width / 2, height / 2));
 
   simulation
     .on('tick', ticked);
@@ -85,8 +90,5 @@ function createGraph({ nodes, links}) {
     .distance(() => 100);
 }
 
-function switchDataPanel(d) {
-  renderTypeTable(d);
-}
 
-module.exports = createGraph;
+export { createGraph as default };

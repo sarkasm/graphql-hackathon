@@ -1,18 +1,16 @@
-import  { pluck } from 'ramda';
-const graphFactory = require('./d3graph');
-const renderTypeTable = require('./d3TypeTable');
-const TypeCollection = require('./TypeCollection');
+import graphFactory from './d3graph';
+import renderTypeTable from './d3TypeTable';
+import TypeCollection from './TypeCollection';
 
-
+// construct d3 nodes & links based on type relationships
 function inferRelations(schema) {
+  const fields = (schema.get('fields') || []).map(f => f.name);
   const relations = schema.getRelations();
-  const fields = schema.get('fields') || [];
-  const field_names = pluck('name', fields);
 
   const node = {
     id: schema.get('name'),
     entity: 'type',
-    fields: field_names,
+    fields,
   };
 
   const links = relations.map(type => ({
@@ -23,27 +21,26 @@ function inferRelations(schema) {
   return { node, links };
 }
 
-function getData(urlRoot){
-  var nodes= [];
-  var links= [];
+// introspect the graphql endpoint
+function getData(urlRoot) {
+  const nodes = [];
+  let links = [];
 
   const types = new TypeCollection({ urlRoot });
 
-  types.fetch({success: () => {
-    types.each(type => {
+  const success = () => {
+    types.each((type) => {
       const info = inferRelations(type);
+
       nodes.push(info.node);
       links = [...links, ...info.links];
     });
 
-    var out = {
-      'nodes': nodes,
-      'links': links
-    };
+    graphFactory({ nodes, links });
+    renderTypeTable(nodes[0]);
+  };
 
-    graphFactory(out);
-    renderTypeTable(out.nodes[0]);
-  }});
+  types.fetch({ success });
 }
 
 export { getData as default };
