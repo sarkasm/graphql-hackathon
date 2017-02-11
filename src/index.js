@@ -11,9 +11,6 @@ function getData(urlRoot){
   window.typeCollection.fetch({success: function(){
     window.typeCollection.each(function(m){
       var relations = m.getRelations();
-      // window.console.log(m);
-      // window.console.log(m.get('fields')[0].name);
-      // window.console.log(_.pluck(m.get('fields')));
 
       var fields = m.get('fields');
       var field_names = [];
@@ -25,11 +22,9 @@ function getData(urlRoot){
           'id': m.get('name'),
           'entity': 'type',
           'fields': field_names
-          // ,m.get('name')
         }
       );
       _.each(relations, function(type){
-        // window.console.log(type);
         links.push(
           {
             'source': m.id,
@@ -37,10 +32,6 @@ function getData(urlRoot){
           }
         );
       });
-      // nodes.push({m.id, m.get('name')});
-      // window.console.log(m.id);
-      // window.console.log(m.cid);
-      // window.console.log(m.getRelations());
     });
 
     var out = {

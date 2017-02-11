@@ -1,23 +1,12 @@
-# graphql-hackathon
-Repo for starter kits and samples for the GraphQL Community Hackathon
+# graphql-slinger
 
-Prereqs: NodeJS v4+
-
+Getting started
 ```
-git clone https://github.com/robzhu/graphql-hackathon
-cd graphql-hackathon
+  npm install
+  npm start
 ```
 
-To run the GraphQL server:
-
-```
-cd server
-npm install && npm start
-```
-Open http://localhost:5000 in your browser and you should see GraphiQL and be able to explore our example schema and data.
-
-```
 Server examples:
 ```
 * https://www.graphqlhub.com/graphql
-* http://localhost:2500/
+```

@@ -4,14 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --watch --inline --config webpack.config.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --watch --inline --config webpack.config.js",
+    "lint": "eslint ./src",
+    "pretest": "npm run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "d3",
+    "graphql",
+    "baller"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.22.1",
