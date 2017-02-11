@@ -10,12 +10,15 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
-      body {
-        padding: 2em;
+      .data-panel {
+        width: 70%;
+      }
+      .control-panel {
+        width: 30%;
       }
       .control-panel,
       .data-panel {
-        width: 50%;
+        padding: 2em;
         height: 100%;
         float: left;
       }
@@ -28,6 +31,11 @@
       .nodes circle {
         stroke: #fff;
         stroke-width: 1.5px;
+      }
+
+      svg {
+        height: 100vh;
+        width: 100%;
       }
     </style>
   </head>
