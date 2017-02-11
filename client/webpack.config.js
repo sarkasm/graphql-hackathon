@@ -1,5 +1,5 @@
 const path = require('path');
-
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -20,5 +20,22 @@ module.exports = {
         loader: 'babel-loader',
       },
     ],
-  }
+  },
+
+  plugins: [
+    new HTMLWebpackPlugin({
+      filename: 'index.html',
+      template: './public/index.html'
+    })
+  ],
+
+  // devServer: {
+  //   port: 3000,
+  //   host: 'localhost',
+  //   historyApiFallback: true,
+  //   watchOptions: {
+  //     aggregateTimeout: 300,
+  //     poll: 1000
+  //   }
+  // }
 }
