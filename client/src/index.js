@@ -1,3 +1,3 @@
-const message = "HELLO WILL";
+const message = "HELLO WILLy";
 
-alert(message);
+console.log(message);
