@@ -121,8 +121,6 @@ function init() {
     document.querySelector('svg').innerHTML = "";
     getData(document.querySelector('input').value);
   })
-  console.log('init');
-  getData('https://www.graphqlhub.com/graphql');
 }
 
 window.onload = init;
