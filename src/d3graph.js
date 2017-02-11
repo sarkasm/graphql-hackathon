@@ -31,7 +31,14 @@ function createGraph({ nodes, links }) {
   const width = +svg.attr('width');
   const height = svg.attr('height');
 
-  const link = svg.append('g')
+  const view = svg.append('g')
+    .attr('class', 'view')
+    .attr('x', 0.5)
+    .attr('y', 0.5)
+    .attr('width', width - 1)
+    .attr('height', height - 1);
+
+  const link = view.append('g')
     .attr('class', 'links')
     .selectAll('line')
     .data(links)
@@ -41,7 +48,7 @@ function createGraph({ nodes, links }) {
       .attr('stroke-width', 5)
       .attr('fill', 'red');
 
-  const node = svg.append('g')
+  const node = view.append('g')
       .attr('class', 'nodes')
       .selectAll('.node')
       .data(nodes)
@@ -88,6 +95,17 @@ function createGraph({ nodes, links }) {
   simulation.force('link')
     .links(links)
     .distance(() => 100);
+
+  function zoomed() {
+    view.attr('transform', d3.event.transform);
+  }
+
+  const zoom = d3.zoom()
+    .scaleExtent([1, 40])
+    .translateExtent([[-100, -100], [width + 90, height + 100]])
+    .on('zoom', zoomed);
+
+  svg.call(zoom);
 }
 
 
