@@ -1,4 +1,5 @@
 const d3 = require('d3');
+const renderTypeTable = require('./d3TypeTable');
 
 function createGraph({ nodes, links}) {
   let simulation;
@@ -39,6 +40,7 @@ function createGraph({ nodes, links}) {
     .enter().append('circle')
       .attr('r', 5)
       .attr('fill', 'blue')
+      .on('click', switchDataPanel)
       .call(d3.drag()
         .on('start', dragstarted)
         .on('drag', dragged)
@@ -70,6 +72,10 @@ function createGraph({ nodes, links}) {
 
   simulation.force('link')
     .links(links);
+}
+
+function switchDataPanel(d) {
+  renderTypeTable(d);
 }
 
 module.exports = createGraph;
