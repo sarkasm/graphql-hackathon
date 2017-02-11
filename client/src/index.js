@@ -1,3 +1,5 @@
+const graphFactory = require('./d3graph');
+
 const mockData = {
   nodes: [
     { id: 'Retweet' },
@@ -19,3 +21,11 @@ const mockData = {
     { source: 'TwitterUser', target: 'Tweet', field: 'tweets' },
   ]
 }
+
+function init() {
+  console.log('init');
+  graphFactory(mockData);
+}
+
+
+window.onload = init;
