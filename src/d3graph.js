@@ -33,7 +33,7 @@ function createGraph({ nodes, links }) {
 
   const view = svg.append('g')
     .attr('class', 'view')
-    .attr('x', 0.5)
+    .attr('x', 0.0)
     .attr('y', 0.5)
     .attr('width', width - 1)
     .attr('height', height - 1);
@@ -87,7 +87,7 @@ function createGraph({ nodes, links }) {
   simulation = d3.forceSimulation(nodes)
     .force('link', d3.forceLink().id(d => d.id))
     .force('charge', d3.forceManyBody())
-    .force('center', d3.forceCenter(width / 2, height / 2));
+    .force('center', d3.forceCenter((width / 2) + 200, (height / 2) + 200));
 
   simulation
     .on('tick', ticked);
@@ -102,7 +102,7 @@ function createGraph({ nodes, links }) {
 
   const zoom = d3.zoom()
     .scaleExtent([-5, 40])
-    .translateExtent([[-500, -500], [width + 500, height + 500]])
+    .translateExtent([[-400, -500], [width + 400, height + 500]])
     .on('zoom', zoomed);
 
   svg.call(zoom);
