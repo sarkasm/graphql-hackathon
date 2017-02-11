@@ -2,12 +2,12 @@ const graphFactory = require('./d3graph');
 const renderTypeTable = require('./d3TypeTable');
 const TypeCollection = require('./app');
 
-var nodes= [];
-var links= [];
 
+function getData(urlRoot){
+  var nodes= [];
+  var links= [];
 
-function getData(){
-  window.typeCollection = new TypeCollection();
+  window.typeCollection = new TypeCollection({urlRoot: urlRoot});
   window.typeCollection.fetch({success: function(){
     window.typeCollection.each(function(m){
       var relations = m.getRelations();
@@ -51,7 +51,7 @@ function getData(){
     graphFactory(out);
     renderTypeTable(out.nodes[0]);
 
-    window.console.log(JSON.stringify(out));
+    // window.console.log(JSON.stringify(out));
     // window.console.log(links);
     // alert('got it');
   }})
@@ -116,8 +116,13 @@ const mockData = {
 }
 
 function init() {
+
+  document.querySelector('button').addEventListener('click', () => {
+    document.querySelector('svg').innerHTML = "";
+    getData(document.querySelector('input').value);
+  })
   console.log('init');
-  getData();
+  getData('https://www.graphqlhub.com/graphql');
 }
 
 window.onload = init;
