@@ -11,9 +11,20 @@ function getData(){
   window.typeCollection.fetch({success: function(){
     window.typeCollection.each(function(m){
       var relations = m.getRelations();
+      // window.console.log(m);
+      // window.console.log(m.get('fields')[0].name);
+      // window.console.log(_.pluck(m.get('fields')));
+
+      var fields = m.get('fields');
+      var field_names = [];
+      _.each(fields, function(field){
+        field_names.push(field.name);
+      });
       nodes.push(
         {
-          'id': m.get('name')
+          'id': m.get('name'),
+          'entity': 'type',
+          'fields': field_names
           // ,m.get('name')
         }
       );
