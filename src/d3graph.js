@@ -1,7 +1,9 @@
-const d3 = require('d3');
+import * as d3 from 'd3';
 const renderTypeTable = require('./d3TypeTable');
 
 function createGraph({ nodes, links}) {
+  document.querySelector('svg').innerHTML = "";
+
   let simulation;
 
   const dragstarted = (d) => {
@@ -61,7 +63,6 @@ function createGraph({ nodes, links}) {
       .text(d => d.id);
 
   const ticked = () => {
-    console.log('ticked');
     link
       .attr('x1', d => d.source.x)
       .attr('y1', d => d.source.y)
