@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GraphQL Slinger</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+      .data-panel {
+        width: 70vw;
+      }
+      .control-panel {
+        width: 30vw;
+        padding-top: 2em;
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      .control-panel,
+      .data-panel {
+        height: 100vh;
+        float: left;
+      }
+
+      .links line {
+        stroke: #999;
+        stroke-opacity: 0.6;
+      }
+
+      .nodes circle {
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+
+      svg {
+        height: 100vh;
+        width: 100%;
+      }
+
+      #type-description {
+        padding-bottom: 5px;
+        padding-left: 5px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <section class='control-panel'>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Your GraphQL introspection query here..."
+          value="https://graphqlhub.com/graphql">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </span>
+      </div>
+
+      <hr/>
+      <div><p id="type-description"></p></div>
+      <div id="js-type-panel" class="panel panel-default">
+      </div>
+    </section>
+
+    <section class='data-panel'>
+      <svg id="graph-container" width="600" height="600"></svg>
+    </section>
+  </body>
+</html>
